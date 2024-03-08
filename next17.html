@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Make your choice</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .container {
+        text-align: center;
+    }
+    h2 {
+        color: #ff5722; /* Change color to orange */
+    }
+    .card {
+        width: 150px;
+        height: 200px;
+        background-color: #ff0062; /* Gold color */
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        display: inline-block;
+        margin: 20px;
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    .card:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, #ff4e50, #fc913a);
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        z-index: 1;
+    }
+    .card:hover:before {
+        opacity: 1;
+    }
+    .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+    .card-content {
+        padding: 20px;
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+        position: relative;
+        z-index: 2;
+    }
+    .card.active .card-content {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .button {
+        font-size: 16px;
+        padding: 10px 20px;
+        margin-top: 10px;
+        border: 2px solid #333;
+        background-color: #fff;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    .button:hover {
+        background-color: #333333;
+        color: #fff;
+    }
+    .card h3 {
+        margin-top: 0;
+        color: #333;
+    }
+    #nextButton {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        font-size: 16px;
+        padding: 10px 20px;
+        border: 2px solid #333;
+        background-color: #2622ff;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        z-index: 999;
+    }
+    #nextButton:hover {
+        background-color: #333;
+        color: #fff;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2> <span style="color: #2622ff;"> 17. We will watch ____</span></h2>
+    <p>Note: Only the card you chose first counts (Don't cheat)</p>
+    <div class="card" onclick="revealCard(this)">
+        <div class="card-content">
+            <h3>Card 1</h3>
+            <p style="display:none; font-size: 20px;" id="cardName1"><span style="color: white;">Let's got to theater</span></p>
+
+            
+        </div>
+    </div>
+    <div class="card" onclick="revealCard(this)">
+        <div class="card-content">
+            <h3>Card 2</h3>
+            <p style="display:none; font-size: 20px;" id="cardName2"><span style="color: white;">Watch netflix being cozy</span></p>
+        </div>
+    </div>
+</div>
+
+<script>
+    function revealCard(card) {
+        card.classList.toggle('active');
+        var cardName = card.querySelector("p").id;
+        document.getElementById(cardName).style.display = "block";
+        showNextButton(); // Show next button after a card is selected
+    }
+    
+    
+
+    function showNextButton() {
+        var nextButton = document.createElement("button");
+        nextButton.id = "nextButton";
+        nextButton.textContent = "Next";
+        nextButton.onclick = function() {
+            // Redirect to the next page
+            window.location.href = "next18.html"; // Change 'next_page.html' to the URL of your next page
+        };
+        document.body.appendChild(nextButton);
+    }
+
+    function moveButton() {
+        var x = Math.random() * (window.innerWidth - document.querySelector('.btn').offsetWidth) - 85;
+        var y = Math.random() * (window.innerHeight - document.querySelector('.btn').offsetHeight) - 48;
+        document.querySelector('.btn').style.left = `${x}px`;
+        document.querySelector('.btn').style.top = `${y}px`;
+    }
+</script>
+
+</body>
+</html>
